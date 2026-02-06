@@ -1,34 +1,37 @@
 # Cookiecutter Code Template
 
-A personal cookiecutter template designed to streamline project setup and development.
+A personal cookiecutter template for Python projects.
 
-## Key Features
+## Features
 
-- **Devcontainer**: Instantly set up a fully configured Python development environment using [devcontainer](https://code.visualstudio.com/docs/devcontainers/containers).
-- **uv Dependency Management**: Simplify and accelerate your Python dependency management with [uv](https://docs.astral.sh/uv/), ensuring efficient workflows.
-- **Docker Support**: Seamlessly run and deploy your app with [Docker](https://docs.docker.com/), enabling portability across various environments.
-- **VSCode Tasks**: Leverage pre-configured [VSCode tasks](https://code.visualstudio.com/docs/editor/tasks) to automate common development tasks and improve productivity.
-- **Template Options**: Choose a different `app_type` when creating a project with cookiecutter. Currently supports `fastapi` and `streamlit`.
+- **App types**: FastAPI or Streamlit
+- **Docker**: Production-ready Dockerfile included
+- **Devcontainer**: Optional pre-configured dev environment for VSCode
+- **uv**: Fast Python dependency management
+- **Ansible Vault**: Optional secrets management
+- **VSCode Tasks**: Pre-configured `dev-run` and `docker-run` tasks
 
-## Getting Started
+## Usage
 
-1. **Install Cookiecutter**
-    ```bash
-    pip install --user cookiecutter
-    ```
-2. **Generate a Project**
-    ```bash
-    cookiecutter gh:jasonlo/code-template
-    ```
-3. **Open project in vscode**
-    ```bash
-    code <project_name>
-    ```
-    Then click "Reopen in Container".
-4. **Run**
+```bash
+pip install --user cookiecutter
+cookiecutter gh:jasonlo/code-template
+```
 
-    Click `dev-run` or `docker-run` on status bar.
+## Template Options
+
+| Option              | Default             | Description                       |
+| ------------------- | ------------------- | --------------------------------- |
+| `project_name`      | New Project         | Project display name              |
+| `author_name`       | Jason Lo            | Author name                       |
+| `author_email`      | `lcmjlo@gmail.com`  | Author email                      |
+| `description`       | —                   | Short project description         |
+| `python_version`    | 3.12                | Python version for containers     |
+| `app_type`          | fastapi             | `fastapi` or `streamlit`          |
+| `app_port`          | 8080                | Application port                  |
+| `use_devcontainer`  | false               | Include `.devcontainer/` setup    |
+| `use_ansible_vault` | true                | Include Ansible Vault for secrets |
 
 ## License
 
-This project is licensed under the MIT License. For more information, refer to the [LICENSE](LICENSE) file.
+MIT — see [LICENSE](LICENSE).

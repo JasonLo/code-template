@@ -13,6 +13,11 @@ fi
 # clean up
 rm -rf app_type
 
+# Remove devcontainer if not needed
+{% if not cookiecutter.use_devcontainer %}
+rm -rf .devcontainer
+{% endif %}
+
 # Install Ansible
 {% if cookiecutter.use_ansible_vault %}
 # Write the Ansible Vault password to .vault_pass

@@ -30,3 +30,20 @@ def test_project_baked(baked_project):
     assert readme.exists()
     assert tasks_json.exists()
     assert dockerfile.exists()
+    assert (project_dir / ".devcontainer").is_dir()
+
+
+def test_no_devcontainer(tmp_path: Path):
+    """Check that .devcontainer is removed when use_devcontainer is false."""
+
+    app_type = "streamlit"
+    output_dir = tmp_path / app_type
+    cookiecutter(
+        ".",
+        no_input=True,
+        extra_context={"app_type": app_type, "use_devcontainer": False},
+        output_dir=output_dir,
+    )
+    project_dir = output_dir / "new_project"
+    assert project_dir.exists()
+    assert not (project_dir / ".devcontainer").exists()

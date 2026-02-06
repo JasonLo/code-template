@@ -10,6 +10,7 @@
         "streamlit"
     ],
     "app_port": "8080",
+    "use_devcontainer": false,
     "use_ansible_vault": true,
     "ansible_vault_password": "{% if cookiecutter.use_ansible_vault %}secure_password{% else %}{{ 'no need, please skip' }}{% endif %}"
 }
