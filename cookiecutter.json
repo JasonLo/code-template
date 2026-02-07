@@ -1,16 +1,12 @@
 {
     "project_name": "New Project",
     "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "description": "A short description of the project",
     "author_name": "Jason Lo",
     "author_email": "lcmjlo@gmail.com",
-    "description": "A short description of the project.",
-    "python_version": "3.12",
-    "app_type": [
-        "fastapi",
-        "streamlit"
-    ],
-    "app_port": "8080",
-    "use_devcontainer": false,
-    "use_ansible_vault": true,
-    "ansible_vault_password": "{% if cookiecutter.use_ansible_vault %}secure_password{% else %}{{ 'no need, please skip' }}{% endif %}"
+    "github_username": "jasonlo",
+    "license": "MIT",
+    "python_version": "3.14",
+    "_current_year": "{% now 'utc', '%Y' %}",
+    "_dev_dependencies": "ipykernel pytest ruff ty pandas numpy altair"
 }

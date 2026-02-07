@@ -1,27 +1,18 @@
 #!/bin/bash
 
-# Project type specific post generation script
-if command -v python3 &>/dev/null; then
-    python3 app_type/{{cookiecutter.app_type}}/post_gen_project.py
-elif command -v python &>/dev/null; then
-    python app_type/{{cookiecutter.app_type}}/post_gen_project.py
-else
-    echo "Neither python3 nor python is installed."
-    exit 1
+uv init --bare --build-backend uv
+
+# add build-backend configuration to pyproject.toml
+if ! grep -qF "[tool.uv.build-backend]" pyproject.toml; then
+    cat <<EOL >> pyproject.toml
+
+[tool.uv.build-backend]
+module-root = "."
+
+[project.scripts]
+hi = "{{cookiecutter.package_name}}.app:main"
+EOL
 fi
 
-# clean up
-rm -rf app_type
-
-# Remove devcontainer if not needed
-{% if not cookiecutter.use_devcontainer %}
-rm -rf .devcontainer
-{% endif %}
-
-# Install Ansible
-{% if cookiecutter.use_ansible_vault %}
-# Write the Ansible Vault password to .vault_pass
-echo {{cookiecutter.ansible_vault_password}} > ./secrets/.vault_pass
-echo "[defaults]" > ansible.cfg
-echo "vault_password_file = ./secrets/.vault_pass" >> ansible.cfg
-{% endif %}
+# add dev dependencies to pyproject.toml
+uv add --dev {{cookiecutter._dev_dependencies}}

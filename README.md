@@ -1,36 +1,34 @@
 # Cookiecutter Code Template
 
-A personal cookiecutter template for Python projects.
-
-## Features
-
-- **App types**: FastAPI or Streamlit
-- **Docker**: Production-ready Dockerfile included
-- **Devcontainer**: Optional pre-configured dev environment for VSCode
-- **uv**: Fast Python dependency management
-- **Ansible Vault**: Optional secrets management
-- **VSCode Tasks**: Pre-configured `dev-run` and `docker-run` tasks
+A personal cookiecutter template for Python projects, powered by [uv](https://docs.astral.sh/uv/).
 
 ## Usage
 
 ```bash
-pip install --user cookiecutter
+uv tool install cookiecutter
 cookiecutter gh:jasonlo/code-template
 ```
 
 ## Template Options
 
-| Option              | Default             | Description                       |
-| ------------------- | ------------------- | --------------------------------- |
-| `project_name`      | New Project         | Project display name              |
-| `author_name`       | Jason Lo            | Author name                       |
-| `author_email`      | `lcmjlo@gmail.com`  | Author email                      |
-| `description`       | —                   | Short project description         |
-| `python_version`    | 3.12                | Python version for containers     |
-| `app_type`          | fastapi             | `fastapi` or `streamlit`          |
-| `app_port`          | 8080                | Application port                  |
-| `use_devcontainer`  | false               | Include `.devcontainer/` setup    |
-| `use_ansible_vault` | true                | Include Ansible Vault for secrets |
+| Option            | Default                | Description                |
+| ----------------- | ---------------------- | -------------------------- |
+| `project_name`    | New Project            | Project display name       |
+| `package_name`    | Formatted project name | PEP-compliant package name |
+| `description`     | —                      | Short project description  |
+| `author_name`     | Jason Lo               | Author name                |
+| `author_email`    | `lcmjlo@gmail.com`     | Author email               |
+| `github_username` | jasonlo                | GitHub username            |
+| `license`         | MIT                    | Project license            |
+| `python_version`  | 3.14                   | Python version             |
+
+## What You Get
+
+- `pyproject.toml` managed by uv (with build-backend)
+- Package structure with an entry point (`hi` command)
+- Dockerfile
+- GitHub Actions workflow for Docker image publishing
+- Dev dependencies: ruff, ty, pytest, ipykernel, pandas, numpy, altair
 
 ## License
 

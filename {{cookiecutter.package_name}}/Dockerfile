@@ -1,25 +1,24 @@
-# Application Dockerfile
-FROM python:{{cookiecutter.python_version}}-slim
+FROM ghcr.io/astral-sh/uv:python3.14-alpine
 
+# Metadata labels <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#labelling-container-images>
+LABEL org.opencontainers.image.source="https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.package_name}}"
+LABEL org.opencontainers.image.description="{{cookiecutter.description}}"
+LABEL org.opencontainers.image.licenses="{{cookiecutter.license}}"
+    
 WORKDIR /app
-EXPOSE {{cookiecutter.app_port}}
 
-# Install dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
+ENV UV_COMPILE_BYTECODE=1
 
-# Install uv
-ADD https://astral.sh/uv/install.sh /uv-installer.sh
-RUN sh /uv-installer.sh && rm /uv-installer.sh
-ENV PATH="/root/.cargo/bin:${PATH}"
-
-# Install dependencies first to cache them
-COPY pyproject.toml .
-COPY uv.lock .
-RUN uv sync --frozen
-ENV PATH="/root/.local/bin:${PATH}"
+# Install non-project dependencies
+COPY pyproject.toml uv.lock ./
+RUN uv sync --locked --no-dev --no-install-project
 
 # Copy the application
 COPY . .
+RUN uv sync --locked --no-dev
 
-# Inject app_type specific commands
-POST_GEN_INJECTION
+# Place the venv binaries on the PATH
+ENV PATH="/app/.venv/bin:$PATH"
+
+# TODO: Expose the application port
+# TODO: Add entrypoint or CMD to run the application
