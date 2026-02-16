@@ -1,5 +1,5 @@
 {
-    "project_name": "New Project",
+    "project_name": "new-project",
     "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
     "description": "A short description of the project",
     "author_name": "Jason Lo",
@@ -8,5 +8,5 @@
     "license": "MIT",
     "python_version": "3.14",
     "_current_year": "{% now 'utc', '%Y' %}",
-    "_dev_dependencies": "ipykernel pytest ruff ty pandas numpy altair"
+    "_dev_dependencies": "ipykernel pytest ruff ty pandas numpy altair matplotlib"
 }

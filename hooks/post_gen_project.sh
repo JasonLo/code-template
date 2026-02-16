@@ -10,7 +10,7 @@ if ! grep -qF "[tool.uv.build-backend]" pyproject.toml; then
 module-root = "."
 
 [project.scripts]
-hi = "{{cookiecutter.package_name}}.app:main"
+{{cookiecutter.package_name}} = "{{cookiecutter.package_name}}.app:main"
 EOL
 fi
 
