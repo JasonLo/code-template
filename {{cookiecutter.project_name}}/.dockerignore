@@ -16,3 +16,4 @@ tests/
 __pycache__/
 .pytest_cache/
 .gitignore
+uv.lock
