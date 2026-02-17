@@ -10,12 +10,12 @@ WORKDIR /app
 ENV UV_COMPILE_BYTECODE=1
 
 # Install non-project dependencies
-COPY pyproject.toml uv.lock ./
-RUN uv sync --locked --no-dev --no-install-project
+COPY pyproject.toml ./
+RUN uv sync --no-dev --no-install-project
 
 # Copy the application
 COPY . .
-RUN uv sync --locked --no-dev
+RUN uv sync --no-dev
 
 # Place the venv binaries on the PATH
 ENV PATH="/app/.venv/bin:$PATH"

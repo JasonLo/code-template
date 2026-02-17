@@ -1,0 +1,6 @@
+services:
+  app:
+    container_name: {{cookiecutter.project_name}}
+    build:
+      context: .
+    image: {{cookiecutter.project_name}}:latest
