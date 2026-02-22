@@ -1,6 +1,6 @@
 #!/bin/bash
 
-uv init --bare --build-backend uv
+uv init --bare --build-backend uv --name {{cookiecutter.project_name}}
 
 # add build-backend configuration to pyproject.toml
 if ! grep -qF "[tool.uv.build-backend]" pyproject.toml; then
